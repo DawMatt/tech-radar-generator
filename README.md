@@ -139,11 +139,11 @@ An example Dockerfile with an nginx config:
 
 FROM node:12 as build
 WORKDIR /build
-RUN yarn global add tech-radar-generator@0.4
+RUN yarn global add tech-radar-generator@0.5.2
 COPY example-data.json /build/
 RUN tech-radar-generator example-data.json /build/dist
 
-FROM nginx:1.17.3
+FROM nginx:1.23.1
 WORKDIR /opt/radar
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /build/dist .
@@ -178,8 +178,8 @@ server {
 To build and run the image:
 
 ```bash
-> docker build --tag my-tech-radar:0.4 .
-> docker run -p8080:8080 my-tech-radar:0.4
+> docker build --tag my-tech-radar:0.5.2 .
+> docker run -p8080:8080 my-tech-radar:0.5.2
 ```
 
 ## Developing
